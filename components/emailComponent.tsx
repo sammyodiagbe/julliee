@@ -48,7 +48,7 @@ const EmailComponent = () => {
   };
 
   return (
-    <div>
+    <div className="max-w-full">
       <form onSubmit={handleSubmit}>
         <div className="flex bg-gray-200 pl-2">
           <input

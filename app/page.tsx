@@ -61,7 +61,7 @@ export default function Home() {
   };
   return (
     <>
-      <nav className="p-8 flex justify-center items-center sticky bg-white top-0">
+      <nav className="p-2 max-w-full md:p-8 flex justify-center items-center sticky bg-white top-0">
         <Image
           src={"/images/logo.svg"}
           className="h-8 font-extrabold"
@@ -70,13 +70,13 @@ export default function Home() {
           alt="logo"
         />
       </nav>
-      <div className="p-8">
-        <motion.div className=" grid grid-cols-2 ">
+      <div className="p-2 md:p-5">
+        <motion.div className=" grid grid-cols-1 md:grid-cols-2 w-full">
           <motion.section
             variants={itemVariants}
             className="space-y-3 flex flex-col gap-3 justify-center"
           >
-            <h1 className="font-extrabold text-8xl w-[400px] leading-20">
+            <h1 className="font-extrabold  text-8xl md:w-[400px] leading-20">
               One ring to rule them all.
             </h1>
             <p>
@@ -120,19 +120,19 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: true, amount: 0.3 }}
           className=""
         >
           {/* <h1 className="text-5xl font-bold my-10">Features</h1> */}
-          <div className="grid  grid-cols-3 mb-20 gap-20">
+          <div className="grid  md:grid-cols-3 mb-20 gap-20">
             {features.map((feature, ind) => {
               return (
                 <motion.div
                   variants={itemVariants}
-                  className="space-y-2"
+                  className="space-y-2 mt-2"
                   key={ind}
                 >
-                  <h2 className="font-bold text-2xl">{feature.title}</h2>
+                  <h2 className="font-bold text-3xl">{feature.title}</h2>
                   <p>{feature.description}</p>
                   <Badge variant={"secondary"}>{feature.badge}</Badge>
                 </motion.div>
@@ -144,8 +144,8 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-          className="grid grid-cols-2 py-8"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid md:grid-cols-2 py-8"
         >
           <motion.div variants={itemVariants}>
             <Image
@@ -158,11 +158,18 @@ export default function Home() {
           </motion.div>
           <motion.div
             variants={itemVariants}
-            className="flex flex-col py-20 space-y-10 justify-center px-10"
+            className="flex flex-col py-20 space-y-10 justify-center px-2 md:px-10"
           >
-            <h1 className="max-w-120 font-bold text-6xl">
+            <h1 className="w-full md:max-w-120 font-bold text-6xl">
               Get early access and launch discounts. Join the waitlist today.
             </h1>
+            <p>
+              Be among the first to experience the future of smart wearables —
+              combining cutting-edge security, effortless convenience, and sleek
+              design. Join our waitlist today to unlock exclusive launch
+              discounts, early access, and a front-row seat to the next
+              evolution in payments, transit, and access control.
+            </p>
             <EmailComponent />
           </motion.div>
         </motion.div>
@@ -170,22 +177,23 @@ export default function Home() {
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.3 }}
-          className="grid grid-cols-2 p-8"
+          viewport={{ once: true, amount: 0.3 }}
+          className="grid md:grid-cols-2 py-8 "
         >
-          <motion.section className="flex items-center" variants={itemVariants}>
-            <div className="flex flex-col space-y-5 max-w-120">
-              <h2 className="text-bold text-6xl max-w-120 font-extrabold">
-                Pay,Transit,Access with Confidence and Style.
-              </h2>
-              <p>
-                Whether you&apos;re commuting, shopping, or accessing secure
-                spaces, Julliee’s smart ring ensures seamless transactions and
-                effortless control—right from your finger.
-              </p>
-              <EmailComponent />
-            </div>
-          </motion.section>
+          <motion.div
+            className="flex flex-col py-20 space-y-10 justify-center px-2 md:px-10"
+            variants={itemVariants}
+          >
+            <h1 className="w-full md:max-w-120 font-bold text-6xl">
+              Pay, Transit, Access with Confidence and Style.
+            </h1>
+            <p>
+              Whether you&apos;re commuting, shopping, or accessing secure
+              spaces, Julliee’s smart ring ensures seamless transactions and
+              effortless control—right from your finger.
+            </p>
+            <EmailComponent />
+          </motion.div>
 
           <motion.div variants={itemVariants}>
             <Image
@@ -193,7 +201,7 @@ export default function Home() {
               height={500}
               width={500}
               alt="Model wearing ring"
-              className="w-full"
+              className="max-w-full w-full"
             />
           </motion.div>
         </motion.div>
