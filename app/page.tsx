@@ -1,103 +1,204 @@
+"use client";
+import { Button } from "@/components/ui/button";
+import { motion } from "motion/react";
 import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
+import EmailComponent from "@/components/emailComponent";
+
+const items = ["Card Payment", "Transit", "Access control"];
+const features = [
+  {
+    title: "Seamless Payments",
+    description:
+      "Make contactless payments with just a tap of your ring. No wallet or phone needed — secure, fast, and always on your finger.",
+    badge: "Payment",
+  },
+  {
+    title: "Transit Access",
+    description:
+      "Commute smarter by tapping your ring to board buses, trains, or subways. Compatible with major transit systems for effortless daily travel.",
+    badge: "Transit",
+  },
+  {
+    title: "Access Control",
+    description:
+      "Unlock doors, buildings, or cars using the ring as a secure digital key. Perfect for offices, smart homes, and keyless entry systems.",
+    badge: "Access control",
+  },
+  {
+    title: "Price starting at $99.99",
+    description:
+      "You’re not just buying a ring — you’re getting a digital wallet,metro pass, keycard, and a statement of style All in one sleek,waterproof smart ring.",
+    badge: "Low budget",
+  },
+  {
+    title: "Go in 3, simple as that.",
+    description:
+      "Snap to activate, switch between cards, and go. Whether you're paying, riding, or unlocking — it’s all on your finger.",
+    badge: "Convenience and Style",
+  },
+  {
+    title: "Biometric Security. EMVCo Certified.",
+    description:
+      "Built with fingerprint protection and global EMVCo compliance, the ring ensures your payments and access are always safe, seamless,and trusted.",
+    badge: "Trusted and Secure",
+  },
+];
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.2,
+      },
+    },
+  };
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    show: { opacity: 1, y: 0, scale: 1 },
+  };
+  return (
+    <>
+      <nav className="p-8 flex justify-center items-center sticky bg-white top-0">
+        <Image
+          src={"/images/logo.svg"}
+          className="h-8 font-extrabold"
+          height={50}
+          width={120}
+          alt="logo"
+        />
+      </nav>
+      <div className="p-8">
+        <motion.div className=" grid grid-cols-2 ">
+          <motion.section
+            variants={itemVariants}
+            className="space-y-3 flex flex-col gap-3 justify-center"
           >
+            <h1 className="font-extrabold text-8xl w-[400px] leading-20">
+              One ring to rule them all.
+            </h1>
+            <p>
+              The ultimate convenience upgrade: tap to pay at any store, breeze
+              through transit turnstiles, and unlock doors at work or home—all
+              with the ring that&apos;s always on your finger. Join the waitlist
+              today.
+            </p>
+            <div className="flex gap-2 py-3">
+              {items.map((item, index) => {
+                return (
+                  <Badge variant={"default"} key={index}>
+                    {item}
+                  </Badge>
+                );
+              })}
+            </div>
+            <EmailComponent />
+          </motion.section>
+          <motion.section
+            variants={itemVariants}
+            className="flex items-center overflow-hidden justify-center"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Image
+                src={"/images/ring_hero 1.svg"}
+                alt="Maltee blue ring"
+                className="w-[800px]"
+                height={400}
+                width={400}
+              />
+            </motion.div>
+          </motion.section>
+        </motion.div>
+
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className=""
+        >
+          {/* <h1 className="text-5xl font-bold my-10">Features</h1> */}
+          <div className="grid  grid-cols-3 mb-20 gap-20">
+            {features.map((feature, ind) => {
+              return (
+                <motion.div
+                  variants={itemVariants}
+                  className="space-y-2"
+                  key={ind}
+                >
+                  <h2 className="font-bold text-2xl">{feature.title}</h2>
+                  <p>{feature.description}</p>
+                  <Badge variant={"secondary"}>{feature.badge}</Badge>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="grid grid-cols-2 py-8"
+        >
+          <motion.div variants={itemVariants}>
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={"/images/image_ring 1.svg"}
+              height={500}
+              width={500}
+              alt="Model wearing ring"
+              className="w-full"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </motion.div>
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col py-20 space-y-10 justify-center px-10"
           >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+            <h1 className="max-w-120 font-bold text-6xl">
+              Get early access and launch discounts. Join the waitlist today.
+            </h1>
+            <EmailComponent />
+          </motion.div>
+        </motion.div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.3 }}
+          className="grid grid-cols-2 p-8"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <motion.section className="flex items-center" variants={itemVariants}>
+            <div className="flex flex-col space-y-5 max-w-120">
+              <h2 className="text-bold text-6xl max-w-120 font-extrabold">
+                Pay,Transit,Access with Confidence and Style.
+              </h2>
+              <p>
+                Whether you&apos;re commuting, shopping, or accessing secure
+                spaces, Julliee’s smart ring ensures seamless transactions and
+                effortless control—right from your finger.
+              </p>
+              <EmailComponent />
+            </div>
+          </motion.section>
+
+          <motion.div variants={itemVariants}>
+            <Image
+              src={"/images/image_pay_2 1.svg"}
+              height={500}
+              width={500}
+              alt="Model wearing ring"
+              className="w-full"
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+    </>
   );
 }
