@@ -3,6 +3,15 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge";
 import EmailComponent from "@/components/emailComponent";
+import {
+  AccessControlIcon,
+  ConvenienceIcon,
+  PriceIcon,
+  SecurityIcon,
+  TransitIcon,
+  PaymentIcon,
+  BatteryIcon,
+} from "@/components/icons/icons";
 
 const items = ["Card Payment", "Transit", "Access control"];
 const features = [
@@ -11,36 +20,42 @@ const features = [
     description:
       "Make contactless payments with just a tap of your ring. No wallet or phone needed — secure, fast, and always on your finger.",
     badge: "Payment",
+    Icon: PaymentIcon,
   },
   {
     title: "Transit Access",
     description:
       "Commute smarter by tapping your ring to board buses, trains, or subways. Compatible with major transit systems for effortless daily travel.",
     badge: "Transit",
+    Icon: TransitIcon,
   },
   {
     title: "Access Control",
     description:
       "Unlock doors, buildings, or cars using the ring as a secure digital key. Perfect for offices, smart homes, and keyless entry systems.",
     badge: "Access control",
+    Icon: AccessControlIcon,
   },
   {
-    title: "Price starting at $99.99",
+    title: "5 days battery life.",
     description:
-      "You’re not just buying a ring — you’re getting a digital wallet,metro pass, keycard, and a statement of style All in one sleek,waterproof smart ring.",
-    badge: "Low budget",
+      "Stay powered through your week with a single charge. The ring is optimized for low energy use, giving you up to five days of seamless performance — no daily charging needed.",
+    badge: "Battery life",
+    Icon: BatteryIcon,
   },
   {
     title: "Go in 3, simple as that.",
     description:
       "Snap to activate, switch between cards, and go. Whether you're paying, riding, or unlocking — it’s all on your finger.",
     badge: "Convenience and Style",
+    Icon: ConvenienceIcon,
   },
   {
     title: "Biometric Security. EMVCo Certified.",
     description:
       "Built with fingerprint protection and global EMVCo compliance, the ring ensures your payments and access are always safe, seamless,and trusted.",
     badge: "Trusted and Secure",
+    Icon: SecurityIcon,
   },
 ];
 
@@ -132,9 +147,14 @@ export default function Home() {
                   className="space-y-2 mt-2"
                   key={ind}
                 >
-                  <h2 className="font-bold text-3xl">{feature.title}</h2>
-                  <p>{feature.description}</p>
-                  <Badge variant={"secondary"}>{feature.badge}</Badge>
+                  <div className="flex justify-center items-center">
+                    {<feature.Icon className="h-15 w-15 " />}
+                  </div>
+                  <h2 className="font-bold text-2xl text-center">
+                    {feature.title}
+                  </h2>
+                  <p className="text-center">{feature.description}</p>
+                  {/* <Badge variant={"outline"}>{feature.badge}</Badge> */}
                 </motion.div>
               );
             })}
